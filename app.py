@@ -8,7 +8,11 @@ import os
 import uuid
 import traceback
 
-from flask import Flask, render_template, request, jsonify
+from agents.document_analysis import analyze_document
+from agents.ppt_generator import create_document_presentation
+
+from flask import ( Flask, render_template, request, jsonify,send_from_directory
+)
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
@@ -17,6 +21,7 @@ from agents.agent_controller import analyse_resource
 from agents.resource_agent import resource_agent
 from rag.retriever import build_embeddings
 
+from agents.technology_analyzer import analyze_technologies
 
 # ============================================================
 # APPLICATION SETUP
@@ -82,7 +87,8 @@ app.config["MAX_CONTENT_LENGTH"] = (
 ALLOWED_EXTENSIONS = {
     "pdf",
     "docx",
-    "txt"
+    "txt",
+    "pptx"
 }
 
 
@@ -263,7 +269,7 @@ def upload_resource():
 
                 "message":
                     "Unsupported file format. "
-                    "Please upload PDF, DOCX or TXT."
+                    "Please upload PDF, DOCX , TXT or create presentation file."
 
             }), 400
 
@@ -345,19 +351,19 @@ def upload_resource():
             document_data
         )
 
+        analysis["technology_intelligence"] = (
+    analyze_technologies(document_data)
+)
+
 
         # ----------------------------------------------------
         # BUILD RAG EMBEDDINGS
         # ----------------------------------------------------
 
-        document_text = document_data.get(
-            "text",
-            ""
-        )
-
+        
 
         rag_data = build_embeddings(
-            document_text,
+            document_data,
             resource_id
         )
 
@@ -460,6 +466,157 @@ def upload_resource():
                 type(error).__name__
 
         }), 500
+
+
+
+# ============================================================
+# DETAILED DOCUMENT ANALYSIS API
+# ============================================================
+
+@app.route("/api/analyze-document", methods=["POST"])
+def analyze_document_api():
+    try:
+        payload = request.get_json(silent=True) or {}
+        document_data = payload.get("document")
+
+        if not isinstance(document_data, dict):
+            return jsonify({
+                "success": False,
+                "message": "A valid document object is required."
+            }), 400
+
+        if not str(document_data.get("text", "")).strip():
+            return jsonify({
+                "success": False,
+                "message": "The document contains no readable text."
+            }), 400
+
+        result = analyze_document(document_data)
+
+        return jsonify({
+            "success": True,
+            "analysis": result
+        })
+
+    except ValueError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error)
+        }), 400
+
+    except Exception:
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "message": "Detailed document analysis failed."
+        }), 500
+
+
+# ============================================================
+# CREATE EDITABLE 20-SLIDE POWERPOINT
+# ============================================================
+
+@app.route("/api/create-ppt", methods=["POST"])
+def create_ppt_api():
+    try:
+        payload = request.get_json(silent=True) or {}
+        document_data = payload.get("document")
+
+        if not isinstance(document_data, dict):
+            return jsonify({
+                "success": False,
+                "message": "A valid document object is required."
+            }), 400
+
+        if not str(document_data.get("text", "")).strip():
+            return jsonify({
+                "success": False,
+                "message": "Upload a readable document first."
+            }), 400
+
+        # Always build the evidence-grounded analysis on the server.
+        # Preserve other existing analysis fields if supplied.
+        detailed_analysis = analyze_document(document_data)
+        combined_analysis = dict(payload.get("analysis") or {})
+        combined_analysis.update(detailed_analysis)
+
+        filename = f"{uuid.uuid4().hex}.pptx"
+        output_path = os.path.join(
+            app.config["REPORT_FOLDER"],
+            filename
+        )
+
+        result = create_document_presentation(
+            document_data=document_data,
+            analysis=combined_analysis,
+            output_path=output_path,
+        )
+
+        return jsonify({
+            "success": True,
+            "message": "20-slide PowerPoint created successfully.",
+            "filename": result["filename"],
+            "slide_count": result["slide_count"],
+            "size_bytes": result["size_bytes"],
+            "download_url": f"/download/{result['filename']}",
+        })
+
+    except ValueError as error:
+        return jsonify({
+            "success": False,
+            "message": str(error)
+        }), 400
+
+    except Exception:
+        traceback.print_exc()
+        return jsonify({
+            "success": False,
+            "message": "PowerPoint generation failed. Check the server terminal."
+        }), 500
+
+
+# ============================================================
+# SECURE GENERATED-REPORT DOWNLOAD
+# ============================================================
+
+@app.route("/download/<filename>", methods=["GET"])
+def download_generated_report(filename):
+    # Only accept filenames generated as 32 hexadecimal
+    # characters followed by .pptx. Never accept a path.
+    import re
+
+    if not re.fullmatch(r"[0-9a-f]{32}\.pptx", filename):
+        return jsonify({
+            "success": False,
+            "message": "Invalid report filename."
+        }), 400
+
+    report_folder = os.path.abspath(
+        app.config["REPORT_FOLDER"]
+    )
+
+    report_path = os.path.abspath(
+        os.path.join(report_folder, filename)
+    )
+
+    if os.path.dirname(report_path) != report_folder:
+        return jsonify({
+            "success": False,
+            "message": "Invalid report path."
+        }), 400
+
+    if not os.path.isfile(report_path):
+        return jsonify({
+            "success": False,
+            "message": "The requested report was not found."
+        }), 404
+
+    return send_from_directory(
+        report_folder,
+        filename,
+        as_attachment=True,
+        download_name="AI_Resource_Intelligence_20_Slide_Report.pptx",
+    )
 
 
 # ============================================================

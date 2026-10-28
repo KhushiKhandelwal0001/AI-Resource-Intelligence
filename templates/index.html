@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1407,6 +1407,271 @@ footer {
     }
 }
 
+
+/* ============================================================
+   LAYOUT REPAIR - CONSISTENT SPACING, COLOURS AND ALIGNMENT
+   ============================================================ */
+
+.topbar {
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    min-width: 0;
+}
+
+.brand-title {
+    line-height: 1.3;
+}
+
+.container {
+    width: min(1200px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.page-intro {
+    max-width: 100%;
+    margin: 0 0 32px;
+}
+
+.page-intro h1 {
+    max-width: 850px;
+    color: #0f172a;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
+
+.page-intro p {
+    color: #64748b;
+    line-height: 1.75;
+}
+
+.intro-capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.intro-supporting-text {
+    margin-top: 14px;
+}
+
+.upload-card {
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 28px;
+    overflow: hidden;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #0f172a;
+    line-height: 1.4;
+}
+
+.section-description {
+    max-width: 760px;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.upload-zone {
+    width: 100%;
+    padding: 36px 20px;
+    text-align: center;
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #fbfdff, #f1f5f9);
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.upload-zone:hover,
+.upload-zone.dragover {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.file-types {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.upload-actions-heading {
+    margin: 26px 0 16px;
+}
+
+.upload-actions-heading h3 {
+    color: #0f172a;
+    font-size: 18px;
+    line-height: 1.45;
+}
+
+.upload-actions-heading p {
+    color: #64748b;
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+.upload-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+    width: 100%;
+}
+
+.upload-action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    min-height: 190px;
+    padding: 22px;
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #ffffff, #f8fbff);
+    color: #172033;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    transition: border-color .2s ease, box-shadow .2s ease,
+                transform .2s ease, background .2s ease;
+}
+
+.upload-action-card:hover {
+    border-color: #93c5fd;
+    background: #eff6ff;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, .10);
+    transform: translateY(-2px);
+}
+
+.upload-action-card:focus-visible,
+.upload-zone:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+.upload-action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border-radius: 13px;
+    background: #dbeafe;
+    font-size: 24px;
+}
+
+.upload-action-title {
+    display: block;
+    color: #1e3a8a;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.upload-action-description {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.selected-file {
+    margin-top: 16px;
+}
+
+#uploadPptResult {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+    .topbar {
+        padding: 16px 20px;
+    }
+
+    .container {
+        width: calc(100% - 28px);
+        padding-top: 26px;
+    }
+
+    .upload-card {
+        padding: 20px;
+    }
+
+    .upload-actions {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .upload-action-card {
+        min-height: auto;
+    }
+
+    .page-intro h1 {
+        letter-spacing: -0.8px;
+    }
+}
+
+@media (max-width: 420px) {
+    .topbar {
+        padding: 14px;
+    }
+
+    .brand {
+        gap: 10px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+    }
+
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .upload-card {
+        padding: 15px;
+    }
+
+    .upload-zone {
+        padding: 26px 12px;
+    }
+}
+
+
+/* FORCE HERO HEADING TO WHITE */
+.page-intro h1,
+.page-intro h1 *,
+section.page-intro h1 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
 </style>
 
 </head>
@@ -1423,35 +1688,28 @@ footer {
 
     <div class="brand">
 
-        <div class="brand-icon">
-            🧠
-        </div>
+        <div class="brand-icon">🤖</div>    
+            
+    
 
-        <div>
+    <div class="brand-title">
+       <span>AI Resource Intelligence</span>
+       <div class="brand-subtitle">
+            Intelligent Document Analysis & Knowledge Platform      
 
-            <div class="brand-title">
-                AI Resource Intelligence
-            </div>
-
-            <div class="brand-subtitle">
-                Intelligent Document Analysis & Knowledge Platform
             </div>
 
         </div>
 
     </div>
 
+<header>
+    <!-- Keep your existing logo and brand title here -->
 
-    <div class="online-status">
-
+    <div class="system-status">
         <span class="status-dot"></span>
-
-        <span>
-            AI System Online
-        </span>
-
+        <span>AI System Online</span>
     </div>
-
 </header>
 
 
@@ -1469,18 +1727,28 @@ footer {
 <section class="page-intro">
 
     <div class="eyebrow">
-        ✨ AI-Powered Document Intelligence
+        🔮YOUR DOCUMENTS. DECODED BY AI.
     </div>
 
     <h1>
-        Turn your documents into actionable intelligence.
+       🚀 Turn information into intelligence.
     </h1>
 
     <p>
-        Upload a CV, annual report, research paper, job description,
-        or business document and use AI-powered document processing,
-        intelligent extraction, analytics, semantic search and
-        document intelligence to understand your information faster.
+        Transform complex documents into clear insights, discover
+        important patterns, extract actionable knowledge, and create
+        decision-ready presentations ? all from one intelligent workspace.
+    </p>
+
+    <div class="intro-capabilities">
+        <span class="file-type">Document Understanding</span>
+        <span class="file-type">Semantic Search</span>
+        <span class="file-type">AI-Powered Insights</span>
+    </div>
+
+    <p class="intro-supporting-text">
+        From CVs and research papers to annual reports and business
+        documents, make your information work smarter.
     </p>
 
 </section>
@@ -1498,19 +1766,17 @@ footer {
 
             <div class="section-title">
 
-                <span class="title-icon">
-                    📄
-                </span>
+                 <span class="title-icon">📚</span>
+                    
+            
 
-                Upload Your Document
+                Your Knowledge Workspace
 
             </div>
 
             <div class="section-description">
 
-                Upload a CV, annual report, research paper,
-                job description, or business document for
-                AI-powered analysis and intelligent insights.
+                Upload a document to uncover key findings, explore its content with AI, or turn its most important insights into an editable PowerPoint presentation.
 
             </div>
 
@@ -1524,12 +1790,12 @@ footer {
         id="uploadZone"
     >
 
-        <div class="upload-icon">
-            📤
-        </div>
+        <div class="upload-icon">🗃️</div>
+            
+        
 
         <h3>
-            Drop your document here
+            📂 Drop your document here
         </h3>
 
         <p>
@@ -1546,15 +1812,19 @@ footer {
             </span>
 
             <span class="file-type">
-                DOCX
+               📝 DOCX
             </span>
 
             <span class="file-type">
-                TXT
+               📃 TXT
             </span>
 
+            <span class="file-type">
+                📊 PPTX
+            </span> 
+
             <span class="file-size-limit">
-                Maximum 25 MB
+               	💾 Maximum 25 MB
             </span>
 
         </div>
@@ -1565,7 +1835,7 @@ footer {
     <input
         type="file"
         id="fileInput"
-        accept=".pdf,.docx,.txt"
+        accept=".pdf,.docx,.txt,.pptx"
     >
 
 
@@ -1580,7 +1850,7 @@ footer {
                 class="selected-file-icon"
                 id="selectedFileIcon"
             >
-                📄
+                
             </div>
 
             <div>
@@ -1589,14 +1859,14 @@ footer {
                     class="selected-file-name"
                     id="selectedFileName"
                 >
-                    —
+                    
                 </div>
 
                 <div
                     class="selected-file-size"
                     id="selectedFileSize"
                 >
-                    —
+                    
                 </div>
 
             </div>
@@ -1610,19 +1880,56 @@ footer {
             type="button"
             title="Remove file"
         >
-            ✕
+        
         </button>
 
     </div>
 
 
+  
+<div class="upload-actions-heading">
+    <h3>🚀 What would you like AI to do?</h3>
+    <p>✨ Choose an action for your uploaded document.</p>
+</div>
+
+<div class="upload-actions">
     <button
-        class="analyze-button"
+        class="upload-action-card"
+        id="createUploadPptButton"
+        type="button"
+        onclick="createUploadPowerPoint()"
+    >
+        <span class="upload-action-icon">📊</span>
+        <span class="upload-action-title">Create a PowerPoint</span>
+        <span class="upload-action-description">
+            Generate an editable presentation with key findings,
+            insights, conclusions, and data charts where available.
+        </span>
+    </button>
+
+    <button
+        class="upload-action-card"
         id="analyzeButton"
         type="button"
+        onclick="analyzeDocument()"
     >
-        🔍 Analyze Document
+        <span class="upload-action-icon">🔍</span>
+        <span class="upload-action-title">Analyze Document</span>
+        <span class="upload-action-description">
+            Extract key points, summarize content, and identify
+           	💡 important insights.
+        </span>
     </button>
+</div>
+
+<div
+    id="uploadPptResult"
+    role="status"
+    aria-live="polite"
+    style="margin-top:16px;"
+></div>
+
+
 
 
     <div
@@ -1660,13 +1967,13 @@ footer {
             <div class="assistant-title-wrap">
 
                 <div class="assistant-icon">
-                    🤖
+                    
                 </div>
 
                 <div>
 
                     <div class="assistant-title">
-                        AI Research & Knowledge Assistant
+                        🤖 AI Research & Knowledge Assistant
                     </div>
 
                     <div
@@ -1721,7 +2028,7 @@ footer {
                 class="suggestion"
                 onclick="useSuggestion('Give me a summary of this document')"
             >
-                📋 Summarize document
+                📝 Summarize document
             </button>
 
             <button
@@ -1729,7 +2036,7 @@ footer {
                 class="suggestion"
                 onclick="useSuggestion('What are the main topics mentioned?')"
             >
-                🔎 Find main topics
+                 Find main topics
             </button>
 
             <button
@@ -1737,7 +2044,7 @@ footer {
                 class="suggestion"
                 onclick="useSuggestion('What are the key findings?')"
             >
-                💡 Find key findings
+                📈 Find key findings
             </button>
 
             <button
@@ -1745,8 +2052,18 @@ footer {
                 class="suggestion"
                 onclick="useSuggestion('What are the main recommendations?')"
             >
-                🎯 Find recommendations
+                📌 Find recommendations
             </button>
+
+            <button
+                type="button"
+                class="suggestion"
+                id="assistantCreatePptButton"
+                onclick="createAssistantPowerPoint()"
+            >
+                Create PowerPoint
+            </button>
+
 
         </div>
 
@@ -1764,7 +2081,7 @@ footer {
                 class="answer-text"
                 id="answerText"
             >
-                —
+                
             </div>
 
             <div
@@ -1794,7 +2111,7 @@ footer {
         <div>
 
             <div class="results-title">
-                📊 Intelligence Report
+                 Intelligence Report
             </div>
 
             <div
@@ -1807,7 +2124,7 @@ footer {
         </div>
 
         <div class="complete-badge">
-            ✓ AI Analysis Complete
+             AI Analysis Complete
         </div>
 
     </div>
@@ -1825,7 +2142,7 @@ footer {
                 class="metric-icon"
                 id="metricDocumentTypeIcon"
             >
-                📄
+                
             </div>
 
             <div class="metric-label">
@@ -1836,7 +2153,7 @@ footer {
                 class="metric-value"
                 id="metricDocumentType"
             >
-                —
+                
             </div>
 
         </div>
@@ -1845,7 +2162,7 @@ footer {
         <div class="metric-card">
 
             <div class="metric-icon">
-                📑
+                
             </div>
 
             <div class="metric-label">
@@ -1856,7 +2173,7 @@ footer {
                 class="metric-value"
                 id="metricPages"
             >
-                —
+                
             </div>
 
         </div>
@@ -1865,7 +2182,7 @@ footer {
         <div class="metric-card">
 
             <div class="metric-icon">
-                📝
+                
             </div>
 
             <div class="metric-label">
@@ -1876,7 +2193,7 @@ footer {
                 class="metric-value"
                 id="metricWords"
             >
-                —
+                
             </div>
 
         </div>
@@ -1898,7 +2215,7 @@ footer {
             <div class="result-card-header">
 
                 <div class="result-card-icon icon-blue">
-                    📄
+                    
                 </div>
 
                 <div class="result-card-title">
@@ -1925,7 +2242,7 @@ footer {
             <div class="result-card-header">
 
                 <div class="result-card-icon icon-purple">
-                    🧠
+                    
                 </div>
 
                 <div class="result-card-title">
@@ -1944,6 +2261,10 @@ footer {
         </section>
 
 
+        
+
+
+
         <!-- KEY INFORMATION -->
 
         <section class="result-card">
@@ -1951,7 +2272,7 @@ footer {
             <div class="result-card-header">
 
                 <div class="result-card-icon icon-green">
-                    🔑
+                    
                 </div>
 
                 <div class="result-card-title">
@@ -1979,7 +2300,7 @@ footer {
             <div class="result-card-header">
 
                 <div class="result-card-icon icon-cyan">
-                    🛠️
+                    
                 </div>
 
                 <div class="result-card-title">
@@ -1993,7 +2314,7 @@ footer {
                 <div class="no-data">
 
                     <div class="no-data-icon">
-                        🔎
+                        
                     </div>
 
                     Skills will appear here after analysis.
@@ -2005,6 +2326,46 @@ footer {
         </section>
 
 
+        
+        <!-- TECHNOLOGY INTELLIGENCE -->
+        <section
+            class="result-card full"
+            id="technologyIntelligenceSection"
+            style="display:none;"
+        >
+            <div class="result-card-header">
+                <div class="result-card-icon icon-orange">
+                    
+                </div>
+
+                <div>
+                    <div class="result-card-title">
+                        Technology Intelligence
+                    </div>
+
+                    <div class="section-description">
+                        Evidence-based technology detection with supporting document snippets.
+                    </div>
+                </div>
+            </div>
+
+            <div
+                id="technologyIntelligenceMetrics"
+                style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0;"
+            ></div>
+
+            <div
+                id="technologyIntelligenceFindings"
+                style="display:grid;gap:14px;"
+            ></div>
+
+            <div
+                id="technologyIntelligenceLimitations"
+                style="margin-top:18px;padding:12px 14px;background:#f8fafc;border-radius:10px;color:#64748b;font-size:12px;line-height:1.6;"
+            ></div>
+        </section>
+
+
         <!-- AI INSIGHTS -->
 
         <section class="result-card full">
@@ -2012,7 +2373,7 @@ footer {
             <div class="result-card-header">
 
                 <div class="result-card-icon icon-orange">
-                    💡
+                    
                 </div>
 
                 <div class="result-card-title">
@@ -2042,7 +2403,7 @@ footer {
             <div class="result-card-header">
 
                 <div class="result-card-icon icon-pink">
-                    🎯
+                    
                 </div>
 
                 <div class="result-card-title">
@@ -2146,11 +2507,11 @@ function getFileIcon(filename) {
     const extension =
         filename.split(".").pop().toLowerCase();
 
-    if (extension === "pdf") return "📕";
-    if (extension === "docx") return "📘";
-    if (extension === "txt") return "📄";
+    if (extension === "pdf") return ;
+    if (extension === "docx") return ;
+    if (extension === "txt") return ;
 
-    return "📄";
+    return ;
 }
 
 
@@ -2220,6 +2581,7 @@ fileInput.addEventListener("change",() => {
 
     prepareSelectedFile(file);
     clearPreviousResults();
+    resetDocumentIntelligenceStudio();
 });
 
 
@@ -2232,11 +2594,11 @@ function validateFile(file) {
             .toLowerCase();
 
     if (
-        !["pdf","docx","txt"].includes(extension)
+        !["pdf","docx","txt","pptx"].includes(extension)
     ) {
 
         showToast(
-            "Please upload a PDF, DOCX, or TXT file.",
+            "Please upload a PDF, DOCX,  TXT file , or Create a PowerPoint from the document.",
             "error"
         );
 
@@ -2269,9 +2631,9 @@ removeFile.addEventListener("click",(event) => {
 
     selectedFile.classList.remove("show");
 
-    selectedFileName.textContent = "—";
-    selectedFileSize.textContent = "—";
-    selectedFileIcon.textContent = "📄";
+    selectedFileName.textContent = "";
+    selectedFileSize.textContent = "";
+    selectedFileIcon.textContent = "";
 
     clearPreviousResults();
 });
@@ -2386,19 +2748,19 @@ function clearPreviousResults() {
 
     document.getElementById(
         "metricDocumentType"
-    ).textContent = "—";
+    ).textContent = "";
 
     document.getElementById(
         "metricPages"
-    ).textContent = "—";
+    ).textContent = "";
 
     document.getElementById(
         "metricWords"
-    ).textContent = "—";
+    ).textContent = "";
 
     document.getElementById(
         "metricDocumentTypeIcon"
-    ).textContent = "📄";
+    ).textContent = "";
 
     document.getElementById(
         "documentInformation"
@@ -2631,21 +2993,242 @@ function getDocumentType(
 function getDocumentTypeIcon(type) {
 
     const icons = {
-        "Annual Report":"📊",
-        "CV / Resume":"📄",
-        "Job Description":"💼",
-        "Research Paper":"🔬",
-        "Policy Document":"📑",
-        "General Document":"📄"
+        "Annual Report": "📊",
+        "CV / Resume": "📄",
+        "Job Description": "💼",
+        "Research Paper": "🔬",
+        "Policy Document": "📜",
+        "General Document": "📝"
     };
 
-    return icons[type] || "📄";
-}
+    return icons[type] || 
+"📝"  ;}
 
 
 /* ============================================================
    RENDER RESULTS
    ============================================================ */
+ 
+ 
+/* ============================================================
+   TECHNOLOGY INTELLIGENCE RENDERER
+   ============================================================ */
+
+function renderTechnologyIntelligence(technologyData) {
+    const section = document.getElementById(
+        "technologyIntelligenceSection"
+    );
+
+    const metrics = document.getElementById(
+        "technologyIntelligenceMetrics"
+    );
+
+    const findingsContainer = document.getElementById(
+        "technologyIntelligenceFindings"
+    );
+
+    const limitationsContainer = document.getElementById(
+        "technologyIntelligenceLimitations"
+    );
+
+    if (!section || !metrics || !findingsContainer ||
+        !limitationsContainer) {
+        return;
+    }
+
+    section.style.display = "block";
+
+    const escapeTechHtml = value =>
+        String(value ?? "").replace(/[&<>"']/g, character => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[character]);
+
+    if (!technologyData || !Array.isArray(technologyData.findings)) {
+        metrics.innerHTML = "";
+        findingsContainer.innerHTML = `
+            <div class="no-data">
+                Technology intelligence was not returned by the backend.
+                Please check the upload API response.
+            </div>
+        `;
+        limitationsContainer.textContent = "";
+        return;
+    }
+
+    const summary = technologyData.summary || {};
+    const findings = technologyData.findings;
+
+    const metricItems = [
+        {
+            label: "Technologies detected",
+            value: summary.technologies_found ?? findings.length
+        },
+        {
+            label: "Code-pattern evidence",
+            value: summary.code_pattern_evidence ?? 0
+        },
+        {
+            label: "Mentioned only",
+            value: summary.mentioned_not_verified ?? 0
+        }
+    ];
+
+    metrics.innerHTML = metricItems.map(item => `
+        <div style="
+            padding:16px;
+            border:1px solid #e2e8f0;
+            border-radius:12px;
+            background:#fff;
+        ">
+            <div style="font-size:12px;color:#64748b;margin-bottom:7px;">
+                ${escapeTechHtml(item.label)}
+            </div>
+            <div style="font-size:26px;font-weight:750;color:#0f172a;">
+                ${escapeTechHtml(item.value)}
+            </div>
+        </div>
+    `).join("");
+
+    if (!findings.length) {
+        findingsContainer.innerHTML = `
+            <div class="no-data">
+                No supported technology patterns or mentions were detected.
+            </div>
+        `;
+    } else {
+        findingsContainer.innerHTML = findings.map(item => {
+            const evidence = [
+                ...(Array.isArray(item.code_evidence)
+                    ? item.code_evidence.map(text => ({
+                        label: "Code-pattern evidence",
+                        text
+                    }))
+                    : []),
+                ...(Array.isArray(item.mention_evidence)
+                    ? item.mention_evidence.map(text => ({
+                        label: "Mention evidence",
+                        text
+                    }))
+                    : [])
+            ];
+
+            const pages = Array.isArray(item.pages)
+                ? item.pages
+                : [];
+
+            const status = item.status || "Status not provided";
+
+            return `
+                <article style="
+                    border:1px solid #e2e8f0;
+                    border-radius:12px;
+                    padding:16px;
+                    background:#fff;
+                ">
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:flex-start;
+                        flex-wrap:wrap;
+                        gap:10px;
+                    ">
+                        <div>
+                            <div style="
+                                font-size:16px;
+                                font-weight:700;
+                                color:#0f172a;
+                            ">
+                                ${escapeTechHtml(item.technology || "Unknown technology")}
+                            </div>
+                            <div style="
+                                font-size:12px;
+                                color:#64748b;
+                                margin-top:4px;
+                            ">
+                                ${escapeTechHtml(item.category || "Uncategorized")}
+                            </div>
+                        </div>
+
+                        <span style="
+                            display:inline-block;
+                            padding:5px 9px;
+                            border-radius:20px;
+                            font-size:11px;
+                            background:${item.code_evidence?.length ? "#dcfce7" : "#fef3c7"};
+                            color:${item.code_evidence?.length ? "#166534" : "#92400e"};
+                        ">
+                            ${escapeTechHtml(status)}
+                        </span>
+                    </div>
+
+                    <div style="
+                        font-size:12px;
+                        color:#475569;
+                        margin-top:10px;
+                    ">
+                        Confidence: ${escapeTechHtml(item.confidence || "Not specified")}
+                        ${pages.length
+                            ? "  Page(s): " + escapeTechHtml(pages.join(", "))
+                            : ""}
+                    </div>
+
+                    ${evidence.length ? `
+                        <div style="margin-top:12px;">
+                            ${evidence.map(entry => `
+                                <div style="
+                                    margin-top:8px;
+                                    padding:10px 12px;
+                                    background:#f8fafc;
+                                    border-radius:8px;
+                                ">
+                                    <div style="
+                                        font-size:11px;
+                                        font-weight:700;
+                                        color:#475569;
+                                        margin-bottom:5px;
+                                    ">
+                                        ${escapeTechHtml(entry.label)}
+                                    </div>
+                                    <pre style="
+                                        white-space:pre-wrap;
+                                        overflow-wrap:anywhere;
+                                        margin:0;
+                                        font-size:12px;
+                                        color:#334155;
+                                        font-family:Consolas,monospace;
+                                    ">${escapeTechHtml(entry.text)}</pre>
+                                </div>
+                            `).join("")}
+                        </div>
+                    ` : `
+                        <div style="margin-top:10px;font-size:12px;color:#64748b;">
+                            No supporting snippet was returned for this finding.
+                        </div>
+                    `}
+                </article>
+            `;
+        }).join("");
+    }
+
+    const limitations = Array.isArray(technologyData.limitations)
+        ? technologyData.limitations
+        : [];
+
+    limitationsContainer.innerHTML = `
+        <strong>Interpretation note:</strong>
+        Static pattern detection identifies evidence in document text;
+        it does not prove that code executed successfully or that a technology
+        was used in a production system.
+        ${limitations.length
+            ? "<br><br>" + limitations.map(escapeTechHtml).join("<br>")
+            : ""}
+    `;
+}
+
 
 function renderResults(result) {
 
@@ -2679,6 +3262,11 @@ function renderResults(result) {
         documentData,
         analysis
     );
+
+        renderTechnologyIntelligence(
+        analysis?.technology_intelligence || null
+    );
+
 
     renderInsights(
         documentData,
@@ -2763,7 +3351,7 @@ function renderDocumentInformation(
 
     const fileType =
         documentData?.file_type ||
-        "—";
+        "Not available";
 
     const pages =
         Number(
@@ -2823,7 +3411,7 @@ function renderDocumentInformation(
                 <div class="document-info-value">
 
                     <span class="document-type-badge">
-                        📄 ${escapeHtml(fileType)}
+                         ${escapeHtml(fileType)}
                     </span>
 
                 </div>
@@ -3030,22 +3618,22 @@ function renderKeyInformation(
 
             {
                 key:"education",
-                title:"🎓 Education"
+                title:" Education"
             },
 
             {
                 key:"experience",
-                title:"💼 Experience"
+                title:" Experience"
             },
 
             {
                 key:"projects",
-                title:"🚀 Projects"
+                title:"Projects"
             },
 
             {
                 key:"certifications",
-                title:"🏆 Certifications"
+                title:" Certifications"
             }
         ];
 
@@ -3087,7 +3675,7 @@ function renderKeyInformation(
                 <div class="no-data">
 
                     <div class="no-data-icon">
-                        🔎
+                        
                     </div>
 
                     No additional structured CV
@@ -3106,7 +3694,7 @@ function renderKeyInformation(
             <div class="key-item">
 
                 <div class="key-item-title">
-                    📊 Analysis Scope
+                    Analysis Scope
                 </div>
 
                 <div class="key-item-text">
@@ -3129,7 +3717,7 @@ function renderKeyInformation(
             <div class="key-item">
 
                 <div class="key-item-title">
-                    🔬 Analysis Scope
+                    📌 Analysis Scope
                 </div>
 
                 <div class="key-item-text">
@@ -3151,7 +3739,7 @@ function renderKeyInformation(
             <div class="key-item">
 
                 <div class="key-item-title">
-                    💼 Analysis Scope
+                     Analysis Scope
                 </div>
 
                 <div class="key-item-text">
@@ -3173,7 +3761,7 @@ function renderKeyInformation(
             <div class="key-item">
 
                 <div class="key-item-title">
-                    📌 Analysis Scope
+                    Analysis Scope
                 </div>
 
                 <div class="key-item-text">
@@ -3218,7 +3806,7 @@ function renderSkills(
             <div class="no-data">
 
                 <div class="no-data-icon">
-                    📘
+                    
                 </div>
 
                 <strong>
@@ -3253,7 +3841,7 @@ function renderSkills(
             <div class="no-data">
 
                 <div class="no-data-icon">
-                    🛠️
+                    
                 </div>
 
                 No significant technical skills were
@@ -3362,19 +3950,19 @@ function renderInsights(
         "Annual Report":[
 
             {
-                title:"📊 Annual Report Intelligence",
+                title: "Annual Report Intelligence",
                 description:
                     "The document has been identified as an Annual Report and is being treated as a business document rather than a candidate profile."
             },
 
             {
-                title:"🔎 Knowledge Retrieval",
+                title: "Knowledge Retrieval",
                 description:
                     "The report has been indexed so users can ask targeted questions about its contents."
             },
 
             {
-                title:"🤖 Document Intelligence",
+                title: "Document Intelligence",
                 description:
                     "AI analysis can be used to explore relevant business information, themes and findings within the report."
             }
@@ -3383,13 +3971,13 @@ function renderInsights(
         "Research Paper":[
 
             {
-                title:"🔬 Research Intelligence",
+                title:" Research Intelligence",
                 description:
                     "The document has been identified as a Research Paper and is being analysed as research content."
             },
 
             {
-                title:"🔎 Knowledge Retrieval",
+                title:" Knowledge Retrieval",
                 description:
                     "The research content is available for targeted semantic question answering."
             }
@@ -3398,13 +3986,13 @@ function renderInsights(
         "Job Description":[
 
             {
-                title:"💼 Role Intelligence",
+                title:" Role Intelligence",
                 description:
                     "The document contains role requirements and responsibilities."
             },
 
             {
-                title:"🛠️ Requirement Analysis",
+                title:"Requirement Analysis",
                 description:
                     "Skills are interpreted as requirements for the role rather than candidate skills."
             }
@@ -3413,7 +4001,7 @@ function renderInsights(
         "Policy Document":[
 
             {
-                title:"📑 Policy Intelligence",
+                title:" Policy Intelligence",
                 description:
                     "The document has been processed as a policy-oriented resource."
             }
@@ -3422,7 +4010,7 @@ function renderInsights(
         "General Document":[
 
             {
-                title:"🤖 Document Intelligence",
+                title:" Document Intelligence",
                 description:
                     "The uploaded resource has been processed using document intelligence and semantic search."
             }
@@ -3471,7 +4059,7 @@ function renderInsightCards(
             card.innerHTML = `
 
                 <div class="insight-icon">
-                    💡
+                    
                 </div>
 
                 <div>
@@ -3502,7 +4090,7 @@ function renderInsightCards(
         card.innerHTML = `
 
             <div class="insight-icon">
-                💡
+                
             </div>
 
             <div>
@@ -3672,7 +4260,7 @@ function updateAssistantForDocument(
                 class="suggestion"
                 onclick="useSuggestion('What experience is mentioned in this document?')"
             >
-                💼 Find experience
+                Find experience
             </button>
 
             <button
@@ -3686,7 +4274,7 @@ function updateAssistantForDocument(
                 class="suggestion"
                 onclick="useSuggestion('Give me a summary of this document')"
             >
-                📋 Summarize CV
+                 Summarize CV
             </button>
         `;
 
@@ -3712,14 +4300,14 @@ function updateAssistantForDocument(
                 class="suggestion"
                 onclick="useSuggestion('What are the main topics in this report?')"
             >
-                🔎 Main topics
+                🕵️ Main topics
             </button>
 
             <button
                 class="suggestion"
                 onclick="useSuggestion('What are the key findings?')"
             >
-                💡 Key findings
+                🧠 Key findings
             </button>
 
             <button
@@ -3745,7 +4333,7 @@ function updateAssistantForDocument(
                 class="suggestion"
                 onclick="useSuggestion('What is this research about?')"
             >
-                🔬 Research topic
+                📌 Research topic
             </button>
 
             <button
@@ -3759,7 +4347,7 @@ function updateAssistantForDocument(
                 class="suggestion"
                 onclick="useSuggestion('What are the main findings?')"
             >
-                💡 Findings
+                🧠 Findings
             </button>
 
             <button
@@ -3790,14 +4378,14 @@ function updateAssistantForDocument(
             class="suggestion"
             onclick="useSuggestion('What are the main topics mentioned?')"
         >
-            🔎 Main topics
+            🕵️ Main topics
         </button>
 
         <button
             class="suggestion"
             onclick="useSuggestion('What are the key findings?')"
         >
-            💡 Key findings
+            🧠 Key findings
         </button>
 
         <button
@@ -3815,35 +4403,133 @@ function updateAssistantForDocument(
    ============================================================ */
 
 function useSuggestion(question) {
+  const analysisActions = {
+    "give me a summary of this document": "summary",
+    "give me a summary of this annual report": "summary",
+    "what are the main topics mentioned?": "topics",
+    "what are the main topics in this report?": "topics",
+    "what are the key findings?": "findings",
+    "what are the main findings?": "findings",
+    "what recommendations are mentioned?": "recommendations",
+    "what are the main recommendations?": "recommendations"
+};
 
-    const input =
-        document.getElementById(
-            "aiQuestion"
-        );
+    const section = analysisActions[
+        String(question || "").trim().toLowerCase()
+    ];
+
+    if (section) {
+        runAssistantAnalysis(section);
+        return;
+    }
+
+    const input = document.getElementById("aiQuestion");
+
+    if (!input) {
+        showToast("The assistant question box was not found.", "error");
+        return;
+    }
 
     input.value = question;
-    input.focus();
+    askAI();
 }
 
+async function runAssistantAnalysis(section) {
+    const answerBox = document.getElementById("answerBox");
+    const answerText = document.getElementById("answerText");
+    const sourceList = document.getElementById("sourceList");
 
-/* ============================================================
-   ENTER
-   ============================================================ */
+    if (!answerBox || !answerText) {
+        showToast("The assistant output area was not found.", "error");
+        return;
+    }
 
-function handleQuestionKey(event) {
+    if (!currentDocument || !String(currentDocument.text || "").trim()) {
+        answerBox.style.display = "block";
+        answerText.textContent =
+            "Please upload and analyze a readable document first.";
+        return;
+    }
 
-    if (event.key === "Enter") {
+    answerBox.style.display = "block";
+    answerText.textContent = "Analyzing document evidence. Please wait...";
 
-        event.preventDefault();
+    if (sourceList) {
+        sourceList.innerHTML = "";
+    }
 
-        askAI();
+    try {
+        const analysis = await getDetailedDocumentAnalysis();
+        let output = "";
+
+        const formatItem = (item, field) => {
+            if (typeof item === "string") {
+                return "- " + item;
+            }
+
+            const text = item[field] || item.explanation ||
+                "No details available";
+            const page = item.page ? " [Page " + item.page + "]" : "";
+            let result = "- " + text + page;
+
+            if (item.mentions !== undefined) {
+                result += "\n  Mentions: " + item.mentions;
+            }
+
+            if (item.evidence_type) {
+                result += "\n  Evidence type: " + item.evidence_type;
+            }
+
+            if (Array.isArray(item.evidence) && item.evidence.length) {
+                result += "\n  Supporting evidence:\n" +
+                    item.evidence.map(evidence => {
+                        const evidencePage = evidence.page
+                            ? " [Page " + evidence.page + "]"
+                            : "";
+                        return "  - " + (evidence.text || "") + evidencePage;
+                    }).join("\n");
+            }
+
+            return result;
+        };
+
+        if (section === "summary") {
+            output = analysis.summary || "No summary was extracted.";
+        } else if (section === "topics") {
+            output = "MAIN TOPICS\n\n" +
+                (analysis.main_topics || [])
+                    .map(item => formatItem(item, "topic"))
+                    .join("\n\n");
+        } else if (section === "findings") {
+            output = "KEY FINDINGS\n\n" +
+                (analysis.key_findings || [])
+                    .map(item => formatItem(item, "finding"))
+                    .join("\n\n");
+        } else if (section === "recommendations") {
+            output = "RECOMMENDATIONS FOUND IN THE DOCUMENT\n\n" +
+                (analysis.source_recommendations || [])
+                    .map(item => formatItem(item, "recommendation"))
+                    .join("\n\n");
+
+            output += "\n\nSUGGESTED ACTIONS FOR FURTHER REVIEW\n\n" +
+                (analysis.suggested_actions || [])
+                    .map(item => formatItem(item, "action"))
+                    .join("\n\n");
+        } else {
+            throw new Error("Unknown analysis section.");
+        }
+
+        if (!output.trim()) {
+            output = "No matching information was identified in the extracted text.";
+        }
+
+        answerText.textContent = output;
+    } catch (error) {
+        answerText.textContent =
+            error.message || "Document analysis failed.";
+        console.error("Assistant document analysis error:", error);
     }
 }
-
-
-/* ============================================================
-   ASK AI
-   ============================================================ */
 
 async function askAI() {
 
@@ -4077,7 +4763,429 @@ console.log(
     "Metrics: Document Type, Pages, Words"
 );
 
+
+/* ============================================================
+   DOCUMENT INTELLIGENCE STUDIO
+   ============================================================ */
+
+
+async function createAssistantPowerPoint() {
+    const button = document.getElementById("assistantCreatePptButton");
+    const answerBox = document.getElementById("answerBox");
+    const answerText = document.getElementById("answerText");
+
+    if (!button || !answerBox || !answerText) {
+        console.error("PowerPoint assistant UI elements are missing.");
+        return;
+    }
+
+    if (!currentDocument || !String(currentDocument.text || "").trim()) {
+        answerBox.style.display = "block";
+        answerText.textContent = "Please upload and analyze a readable document first.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "\u23F3 Creating PowerPoint...";
+    answerBox.style.display = "block";
+    answerText.textContent = "Preparing your editable PowerPoint presentation. Please wait...";
+
+    try {
+        const response = await fetch("/api/create-ppt", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                document: currentDocument,
+                analysis: currentAnalysis || {}
+            })
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message ||
+                "The PowerPoint endpoint returned HTTP " + response.status + "."
+            );
+        }
+
+        if (result.slide_count !== 20) {
+            throw new Error(
+                "The server did not confirm the required 20 slides."
+            );
+        }
+
+        if (
+            typeof result.download_url !== "string" ||
+            !/^\/download\/[0-9a-f]{32}\.pptx$/.test(result.download_url)
+        ) {
+            throw new Error("The server returned an invalid download link.");
+        }
+
+        answerText.innerHTML =
+            '<div style="padding:14px;background:#f0fdf4;border-radius:10px;">' +
+            '<strong>PowerPoint is ready.</strong>' +
+            '<p>Your editable presentation was created successfully.</p>' +
+            '<a href="' + result.download_url + '" download ' +
+            'style="display:inline-block;padding:10px 16px;' +
+            'background:#166534;color:#fff;border-radius:7px;' +
+            'text-decoration:none;">Download PowerPoint</a>' +
+            '</div>';
+
+    } catch (error) {
+        answerText.textContent =
+            error.message || "PowerPoint generation failed.";
+        console.error("PowerPoint generation error:", error);
+    } finally {
+        button.disabled = false;
+        button.textContent = "\uD83D\uD4FD\uFE0F Create PowerPoint";
+    }
+}
+
+let detailedDocumentAnalysis = null;
+
+function resetDocumentIntelligenceStudio() {
+    detailedDocumentAnalysis = null;
+
+    const status = document.getElementById("documentAnalysisStatus");
+    const output = document.getElementById("documentAnalysisOutput");
+    const pptResult = document.getElementById("documentPptResult");
+
+    if (status) status.textContent = "Select an analysis option to begin.";
+    if (output) {
+        output.innerHTML = "";
+        output.style.display = "none";
+    }
+    if (pptResult) pptResult.innerHTML = "";
+}
+
+function documentAnalysisValue(value) {
+    if (value === null || value === undefined || value === "") {
+        return "Not identified in extracted text.";
+    }
+
+    if (typeof value === "string" || typeof value === "number") {
+        return String(value);
+    }
+
+    if (Array.isArray(value)) {
+        return value.map(documentAnalysisValue).join("; ");
+    }
+
+    return String(
+        value.text ||
+        value.sentence ||
+        value.excerpt ||
+        value.evidence ||
+        value.description ||
+        value.topic ||
+        value.title ||
+        JSON.stringify(value)
+    );
+}
+
+function documentAnalysisEvidence(item) {
+    if (!item || typeof item !== "object") return "";
+
+    const evidence = item.evidence || item.excerpt || item.sentence ||
+                     item.supporting_text || item.source_text || "";
+
+    const page = item.page ?? item.page_number ?? item.page_reference;
+
+    let html = "";
+
+    if (evidence) {
+        html += `<div style="margin-top:8px;padding:10px 12px;
+            background:#f8fafc;border-left:3px solid #6366f1;
+            border-radius:6px;font-size:13px;">
+            <strong>Source evidence:</strong> ${escapeHtml(documentAnalysisValue(evidence))}
+        </div>`;
+    }
+
+    if (page !== undefined && page !== null && page !== "") {
+        html += `<div style="font-size:12px;color:#64748b;margin-top:5px;">
+            Source page: ${escapeHtml(String(page))}
+        </div>`;
+    }
+
+    return html;
+}
+
+function renderDocumentAnalysisItems(items, emptyMessage) {
+    if (!Array.isArray(items) || !items.length) {
+        return `<p>${escapeHtml(emptyMessage)}</p>`;
+    }
+
+    return items.map((item, index) => {
+        const heading = item && typeof item === "object"
+            ? item.topic || item.title || item.name || item.category ||
+              item.sentence || item.text || `Item ${index + 1}`
+            : item;
+
+        const description = item && typeof item === "object"
+            ? item.explanation || item.description || item.summary || ""
+            : "";
+
+        return `
+            <article style="padding:14px 0;border-bottom:1px solid #e2e8f0;">
+                <h4 style="margin:0 0 6px;color:#1e293b;">
+                    ${escapeHtml(String(heading))}
+                </h4>
+                ${description ? `<p style="margin:0;">${escapeHtml(documentAnalysisValue(description))}</p>` : ""}
+                ${documentAnalysisEvidence(item)}
+            </article>
+        `;
+    }).join("");
+}
+
+async function getDetailedDocumentAnalysis() {
+    if (!currentDocument || !String(currentDocument.text || "").trim()) {
+        throw new Error("Please upload and analyze a readable document first.");
+    }
+
+    if (detailedDocumentAnalysis) {
+        return detailedDocumentAnalysis;
+    }
+
+    const response = await fetch("/api/analyze-document", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ document: currentDocument })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+        throw new Error(result.message || "Detailed analysis failed.");
+    }
+
+    detailedDocumentAnalysis = result.analysis;
+    return detailedDocumentAnalysis;
+}
+
+async function openDocumentAnalysis(section) {
+    const status = document.getElementById("documentAnalysisStatus");
+    const output = document.getElementById("documentAnalysisOutput");
+
+    status.textContent = "Analyzing document evidence...";
+    output.style.display = "block";
+    output.textContent = "Please wait while the analysis is prepared.";
+
+    try {
+        const analysis = await getDetailedDocumentAnalysis();
+        let title = "";
+        let content = "";
+
+        if (section === "summary") {
+            title = "📝 Detailed Document Summary";
+            content = `<div style="white-space:pre-wrap;">${escapeHtml(
+                analysis.summary || "No detailed summary was extracted."
+            )}</div>`;
+        } else if (section === "topics") {
+            title = "🧩 Main Topics";
+            content = renderDocumentAnalysisItems(
+                analysis.main_topics,
+                "No recurring topics were identified in the extracted text."
+            );
+        } else if (section === "findings") {
+            title = "🔍 Key Findings";
+            content = renderDocumentAnalysisItems(
+                analysis.key_findings,
+                "No evidence-backed findings were identified."
+            );
+        } else if (section === "recommendations") {
+            title = "💡 Recommendations and Proposed Actions";
+
+            content = `
+                <h4>📌 Recommendations found in the source document</h4>
+                ${renderDocumentAnalysisItems(
+                    analysis.source_recommendations,
+                    "No explicit recommendations were identified in the source text."
+                )}
+
+                <h4 style="margin-top:24px;">➡️ Suggested actions for further review</h4>
+                ${renderDocumentAnalysisItems(
+                    analysis.suggested_actions,
+                    "No additional suggested actions were returned."
+                )}
+            `;
+        } else {
+            throw new Error("Unknown analysis section.");
+        }
+
+        output.innerHTML = `
+            <h3 style="margin:0 0 14px;color:#1e293b;">
+                ${escapeHtml(title)}
+            </h3>
+            ${content}
+            <p style="margin-top:18px;font-size:12px;color:#64748b;">
+                Method: ${escapeHtml(
+                    analysis.analysis_method || "Document text analysis"
+                )}.
+            </p>
+            ${
+                Array.isArray(analysis.limitations) && analysis.limitations.length
+                ? `<div style="margin-top:12px;padding:12px;background:#fff7ed;
+                    border-radius:8px;font-size:12px;">
+                    <strong>Limitations:</strong><ul>
+                    ${analysis.limitations.map(item =>
+                        `<li>${escapeHtml(documentAnalysisValue(item))}</li>`
+                    ).join("")}
+                    </ul></div>`
+                : ""
+            }
+        `;
+
+        status.textContent = "Analysis ready.";
+    } catch (error) {
+        output.textContent = "";
+        status.textContent = error.message || "Could not analyze the document.";
+    }
+}
+
+async function createDocumentPowerPoint() {
+    const button = document.getElementById("createDocumentPptButton");
+    const status = document.getElementById("documentAnalysisStatus");
+    const pptResult = document.getElementById("documentPptResult");
+
+    if (!currentDocument || !String(currentDocument.text || "").trim()) {
+        showToast("Please upload and analyze a document first.", "error");
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = " Creating PowerPoint...";
+    status.textContent = "Preparing the editable 20-slide presentation...";
+    pptResult.innerHTML = "";
+
+    try {
+        const response = await fetch("/api/create-ppt", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                document: currentDocument,
+                analysis: currentAnalysis || {}
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(result.message || "PowerPoint generation failed.");
+        }
+
+        if (result.slide_count !== 20) {
+            throw new Error(
+                `Expected 20 slides, but the server reported ${result.slide_count}.`
+            );
+        }
+
+        const downloadUrl = result.download_url;
+
+        if (!downloadUrl || !downloadUrl.startsWith("/download/")) {
+            throw new Error("The server did not return a valid download link.");
+        }
+
+        pptResult.innerHTML = `
+            <div style="padding:14px;background:#f0fdf4;border-radius:10px;">
+                <strong>PowerPoint generated successfully.</strong>
+                <p>${escapeHtml(String(result.slide_count))} editable slides created.</p>
+                <a href="${escapeHtml(downloadUrl)}" download
+                   style="display:inline-block;padding:10px 16px;
+                   background:#166534;color:#fff;border-radius:7px;
+                   text-decoration:none;">
+                    Download PowerPoint
+                </a>
+            </div>
+        `;
+
+        status.textContent = "Your presentation is ready to download.";
+        showToast("20-slide PowerPoint created.", "success");
+    } catch (error) {
+        status.textContent = error.message || "PowerPoint generation failed.";
+        showToast(status.textContent, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = " Create 20-Slide PPT";
+    }
+}
+
+
+async function createUploadPowerPoint() {
+    const button = document.getElementById("createUploadPptButton");
+    const resultBox = document.getElementById("uploadPptResult");
+
+    if (!fileInput.files || !fileInput.files.length) {
+        showToast("Please select a document first.", "error");
+        return;
+    }
+
+    // Analyze the selected file first if it has not been processed yet.
+    if (!currentDocument || !String(currentDocument.text || "").trim()) {
+        await analyzeDocument();
+    }
+
+    if (!currentDocument || !String(currentDocument.text || "").trim()) {
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Creating PowerPoint...";
+    resultBox.textContent = "Generating your editable presentation...";
+
+    try {
+        const response = await fetch("/api/create-ppt", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                document: currentDocument,
+                analysis: currentAnalysis || {}
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message || "PowerPoint generation failed."
+            );
+        }
+
+        if (
+            !result.download_url ||
+            !/^\/download\/[0-9a-f]{32}\.pptx$/.test(result.download_url)
+        ) {
+            throw new Error("The server returned an invalid download link.");
+        }
+
+        resultBox.innerHTML = `
+            <div style="padding:16px;background:#f0fdf4;border-radius:10px;">
+                <strong>PowerPoint created successfully!</strong>
+                <p>${Number(result.slide_count)} editable slides are ready.</p>
+                <a href="${result.download_url}" download
+                   style="display:inline-block;padding:11px 16px;
+                   background:#166534;color:white;border-radius:8px;
+                   text-decoration:none;">
+                    Download PowerPoint
+                </a>
+            </div>
+        `;
+
+        showToast("Your PowerPoint is ready to download.", "success");
+    } catch (error) {
+        resultBox.textContent = error.message || "Could not create PowerPoint.";
+        showToast(resultBox.textContent, "error");
+    } finally {
+        button.disabled = false;
+        button.textContent = "📊 Create a PowerPoint";
+    }
+}
+
+
 </script>
 
 </body>
 </html>
+
+
+
