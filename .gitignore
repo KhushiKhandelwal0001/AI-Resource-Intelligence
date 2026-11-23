@@ -41,3 +41,6 @@ __pycache__/
 # Local backup and helper files
 index.html
 templates/*before-restore*
+
+# Local development helper script
+update_assistant_ppt.py
