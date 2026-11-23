@@ -37,3 +37,7 @@ __pycache__/
 *.diagnostic*
 *.accidental
 *.bak
+
+# Local backup and helper files
+index.html
+templates/*before-restore*
