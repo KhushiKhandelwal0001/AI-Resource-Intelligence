@@ -73,10 +73,10 @@ app.config["PROCESSED_FOLDER"] = PROCESSED_FOLDER
 app.config["EMBEDDING_FOLDER"] = EMBEDDING_FOLDER
 app.config["REPORT_FOLDER"] = REPORT_FOLDER
 
-# Maximum upload size: 25 MB
+# Maximum upload size: 200 MB
 
 app.config["MAX_CONTENT_LENGTH"] = (
-    25 * 1024 * 1024
+    200 * 1024 * 1024
 )
 
 

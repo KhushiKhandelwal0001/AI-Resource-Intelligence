@@ -1,6 +1,4 @@
 
-
-
 # ============================================================
 # AI RESOURCE INTELLIGENCE
 # RESOURCE INTELLIGENCE AGENT
@@ -9,7 +7,7 @@
 
 import re
 
-from rag.retriever import search_document
+from rag.retriever import search_document 
 
 
 # ============================================================
@@ -33,7 +31,7 @@ STOP_WORDS = {
     "give", "find", "search", "explain",
     "describe", "information", "details",
     "document", "uploaded", "page", "mention",
-    "mentions", "mentioned"
+    "mentions", "mentioned", "company", "many"
 }
 
 
@@ -56,26 +54,16 @@ def normalize_text(text):
 
 
 def tokenize(text):
-    """Extract lowercase searchable terms."""
+    """Return lowercase words without punctuation."""
+    if not text:
+        return set()
 
-    return set(
-        token.lower()
-        for token in re.findall(
-            r"[A-Za-z0-9][A-Za-z0-9+#./-]*",
-            normalize_text(text)
-        )
-        if len(token) > 1
-    )
-
+    return set(re.findall(r"\b[a-zA-Z0-9]+\b", str(text).lower()))
 
 def get_meaningful_words(question):
-    """Remove conversational stop words from a question."""
-
-    return {
-        word
-        for word in tokenize(question)
-        if word not in STOP_WORDS
-    }
+    """Remove common question words while keeping searchable keywords."""
+    words = tokenize(question)
+    return words - STOP_WORDS
 
 
 def split_into_searchable_units(text):

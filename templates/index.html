@@ -705,12 +705,163 @@ input {
     margin-bottom:10px;
 }
 
+
+
 .answer-text {
-    color:#334155;
-    line-height:1.7;
-    font-size:14px;
-    white-space:pre-wrap;
+    color: #273449;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.9;
+    letter-spacing: 0.15px;
+    word-spacing: 1px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    max-width: 100%;
 }
+
+.answer-text .ai-answer-intro {
+    margin: 0 0 26px;
+    padding: 21px 23px;
+    color: #334155;
+    background: linear-gradient(135deg, #f5f3ff 0%, #eff6ff 100%);
+    border: 1px solid #ddd6fe;
+    border-left: 4px solid #7c3aed;
+    border-radius: 14px;
+    line-height: 1.95;
+    letter-spacing: 0.15px;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.05);
+}
+
+.answer-text .ai-answer-heading {
+    display: block;
+    margin: 30px 0 14px;
+    padding: 0 0 10px;
+    color: #312e81;
+    font-size: 17px;
+    font-weight: 750;
+    line-height: 1.55;
+    letter-spacing: 0.1px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.answer-text .ai-answer-heading:first-child {
+    margin-top: 0;
+}
+
+.answer-text .ai-answer-paragraph {
+    margin: 0 0 20px;
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.95;
+    letter-spacing: 0.15px;
+    overflow-wrap: anywhere;
+}
+
+.answer-text .ai-answer-list {
+    display: grid;
+    gap: 11px;
+    margin: 14px 0 26px;
+    padding: 0;
+    list-style: none;
+}
+
+.answer-text .ai-answer-list li {
+    position: relative;
+    margin: 0;
+    padding: 13px 16px 13px 40px;
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #e7eaf3;
+    border-radius: 11px;
+    line-height: 1.85;
+    letter-spacing: 0.1px;
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.025);
+    overflow-wrap: anywhere;
+}
+
+.answer-text .ai-answer-list li::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 21px;
+    width: 8px;
+    height: 8px;
+    background: #7c3aed;
+    border-radius: 50%;
+}
+
+.answer-text ol.ai-answer-list {
+    counter-reset: answer-item;
+}
+
+.answer-text ol.ai-answer-list li {
+    padding-left: 44px;
+    counter-increment: answer-item;
+}
+
+.answer-text ol.ai-answer-list li::before {
+    content: counter(answer-item);
+    top: 12px;
+    left: 12px;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6d28d9;
+    background: #ede9fe;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.answer-text .ai-answer-number {
+    margin: 0 0 14px;
+    color: #6d28d9;
+    font-weight: 750;
+    line-height: 1.85;
+}
+
+.answer-text mark.ai-search-highlight {
+    padding: 2px 5px;
+    color: #854d0e;
+    background: #fef3c7;
+    border-radius: 5px;
+    font-weight: 650;
+}
+
+.answer-text .ai-answer-note {
+    margin-top: 28px;
+    padding: 13px 15px;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid #e8edf5;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+@media (max-width: 640px) {
+    .answer-text {
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    .answer-text .ai-answer-intro {
+        padding: 16px;
+    }
+
+    .answer-text .ai-answer-heading {
+        margin-top: 24px;
+        font-size: 16px;
+    }
+
+    .answer-text .ai-answer-list li {
+        padding: 12px 12px 12px 36px;
+    }
+}
+
 
 .source-list {
     display:flex;
@@ -2605,10 +2756,10 @@ function validateFile(file) {
         return false;
     }
 
-    if (file.size > 25 * 1024 * 1024) {
+    if (file.size > 200 * 1024 * 1024) {
 
         showToast(
-            "The maximum file size is 25 MB.",
+            "The maximum file size is 200 MB.",
             "error"
         );
 
@@ -4531,6 +4682,155 @@ async function runAssistantAnalysis(section) {
     }
 }
 
+
+
+function escapeAIAnswerHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+function formatAIAnswer(rawAnswer, question = "") {
+    const raw = String(rawAnswer ?? "").trim();
+
+    if (!raw) {
+        return '<p class="ai-answer-paragraph">No answer was generated.</p>';
+    }
+
+    const stopWords = new Set([
+        "what", "when", "where", "which", "who", "whom", "whose",
+        "why", "how", "does", "did", "are", "is", "was", "were",
+        "the", "a", "an", "and", "or", "but", "for", "from", "with",
+        "about", "this", "that", "these", "those", "into", "your",
+        "document", "please", "give", "tell", "show", "explain",
+        "summarize", "summary", "main", "key", "findings", "topics"
+    ]);
+
+    const terms = [...new Set(
+        (String(question).toLowerCase().match(/[a-z0-9][a-z0-9+#.-]*/g) || [])
+            .filter(term => term.length > 2 && !stopWords.has(term))
+    )].sort((a, b) => b.length - a.length).slice(0, 12);
+
+    function safeHighlightedText(text) {
+        let safe = escapeAIAnswerHtml(text);
+
+        for (const term of terms) {
+            const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            safe = safe.replace(
+                new RegExp("(?<![A-Za-z0-9])(" + escapedTerm + ")(?![A-Za-z0-9])", "gi"),
+                '<mark class="ai-search-highlight">$1</mark>'
+            );
+        }
+
+        return safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    }
+
+    const headingPattern = /^(?:#{1,4}\s*)?(executive summary|summary|overview|direct answer|key findings|main findings|findings|main topics|topics discussed|key topics|recommendations|suggestions|conclusion|conclusions|supporting evidence|evidence|important points|key takeaways|limitations|methodology|results|analysis|detailed analysis|next steps|answer|benefits|challenges|risks|impact|applications|future scope|skills identified|projects identified)\s*:?\s*$/i;
+
+    let lines = raw.replace(/\r/g, "").split("\n");
+
+    // If the answer is one long block, split it into readable paragraphs.
+    const hasStructure = lines.some(line =>
+        /^\s*(?:#{1,4}\s+|[-*?]\s+|\d+[.)]\s+)/.test(line) ||
+        headingPattern.test(line.trim().replace(/\*\*/g, "").replace(/^#{1,4}\s*/, ""))
+    );
+
+    if (!hasStructure && lines.length <= 2 && raw.length > 260) {
+        const sentences = raw.match(/[^.!?]+(?:[.!?]+["')\]]*)?/g) || [raw];
+        const cleanSentences = sentences.map(s => s.trim()).filter(Boolean);
+
+        if (cleanSentences.length >= 3) {
+            lines = [];
+            for (let i = 0; i < cleanSentences.length; i += 2) {
+                lines.push(cleanSentences.slice(i, i + 2).join(" "));
+                lines.push("");
+            }
+        }
+    }
+
+    const output = [];
+    let listItems = [];
+    let listType = "ul";
+    let contentCount = 0;
+
+    function flushList() {
+        if (!listItems.length) return;
+
+        const tag = listType === "ol" ? "ol" : "ul";
+        output.push(
+            '<' + tag + ' class="ai-answer-list">' +
+            listItems.map(item => "<li>" + safeHighlightedText(item) + "</li>").join("") +
+            "</" + tag + ">"
+        );
+
+        listItems = [];
+        listType = "ul";
+    }
+
+    for (const originalLine of lines) {
+        const line = originalLine.trim();
+
+        if (!line) {
+            flushList();
+            continue;
+        }
+
+        const cleaned = line.replace(/^#{1,4}\s*/, "").replace(/\*\*/g, "").trim();
+        const heading = cleaned.match(headingPattern);
+        const markdownHeading = line.match(/^#{1,4}\s+(.+)$/);
+
+        if (heading || markdownHeading) {
+            flushList();
+            const title = heading ? cleaned.replace(/:$/, "") : markdownHeading[1];
+
+            output.push(
+                '<h3 class="ai-answer-heading">' +
+                safeHighlightedText(title) +
+                "</h3>"
+            );
+            continue;
+        }
+
+        const numbered = line.match(/^\d+[.)]\s+(.+)$/);
+        const bullet = line.match(/^[-*?]\s+(.+)$/);
+
+        if (numbered) {
+            if (listType !== "ol") flushList();
+            listType = "ol";
+            listItems.push(numbered[1]);
+            continue;
+        }
+
+        if (bullet) {
+            if (listType !== "ul") flushList();
+            listType = "ul";
+            listItems.push(bullet[1]);
+            continue;
+        }
+
+        flushList();
+
+        const paragraph = safeHighlightedText(line);
+
+        if (contentCount === 0) {
+            output.push('<div class="ai-answer-intro">' + paragraph + "</div>");
+        } else {
+            output.push('<p class="ai-answer-paragraph">' + paragraph + "</p>");
+        }
+
+        contentCount++;
+    }
+
+    flushList();
+
+    return output.join("") +
+        '<div class="ai-answer-note">Answer formatted for readability. Highlighted terms reflect your search query.</div>';
+}
+
 async function askAI() {
 
     const input =
@@ -4633,9 +4933,8 @@ async function askAI() {
             );
         }
 
-        answerText.textContent =
-            result.answer ||
-            "No answer was generated.";
+        answerText.innerHTML =
+            formatAIAnswer(result.answer || "No answer was generated.", question);
 
         const sources =
             Array.isArray(result.sources)
